@@ -797,6 +797,9 @@ h2::after {
   header{
     padding: 35px;
   }
+  h2 {
+    font-size: 32px;
+  }
   .logo {
     font-size: 28px;
     left: 25px;
