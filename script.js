@@ -6,58 +6,50 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.classList.add("overlay");
   document.body.appendChild(overlay);
 
-  // Obsługa otwierania i zamykania menu
+  // Hamburger menu
   hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      overlay.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    overlay.classList.toggle("active");
   });
 
   overlay.addEventListener("click", () => {
-      navLinks.classList.remove("active");
-      overlay.classList.remove("active");
+    navLinks.classList.remove("active");
+    overlay.classList.remove("active");
   });
 
-  // Funkcja ustawiania aktywnego linku
+  // Active link setting
   function setActiveLink() {
-      navLinksA.forEach(link => {
-          link.classList.remove("active");
-          if (window.location.href.includes(link.getAttribute("href"))) {
-              link.classList.add("active");
-          }
-      });
+    navLinksA.forEach(link => {
+      link.classList.remove("active");
+      if (window.location.href.includes(link.getAttribute("href"))) {
+        link.classList.add("active");
+      }
+    });
   }
 
-  // Ustawienie aktywnego linku przy załadowaniu strony
   setActiveLink();
 
-  // Obsługa kliknięcia w link nawigacji - zmiana aktywnego linku
   navLinksA.forEach(link => {
-      link.addEventListener("click", function () {
-          navLinksA.forEach(l => l.classList.remove("active"));
-          this.classList.add("active");
-      });
+    link.addEventListener("click", function () {
+      navLinksA.forEach(l => l.classList.remove("active"));
+      this.classList.add("active");
+    });
   });
 });
 
+// Sticky header
 document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = 0;
-    const header = document.querySelector("header");
+  let lastScrollTop = 0;
+  const header = document.querySelector("header");
 
-    window.addEventListener("scroll", function () {
-        let scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop) {
-            // Scrolling down - hide header
-            header.classList.add("header-hidden");
-        } else {
-            // Scrolling up - show header
-            header.classList.remove("header-hidden");
-        }
-
-        lastScrollTop = scrollTop;
-    });
+  window.addEventListener("scroll", function () {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle("header-hidden", scrollTop > lastScrollTop);
+    lastScrollTop = scrollTop;
+  });
 });
 
+// === PRODUKTY ===
 const productGrid = document.getElementById('productGrid');
 const popupOverlay = document.getElementById('popupOverlay');
 const popupClose = document.getElementById('popupClose');
@@ -65,14 +57,24 @@ const popupId = document.getElementById('popupId');
 const popupText = document.getElementById('popupText');
 const popupImage = document.getElementById('popupImage');
 const pageSizeSelect = document.getElementById('pageSize');
+const loader = document.getElementById('loader');
+const produktySection = document.getElementById('produkty');
 
 let page = 1;
 let pageSize = parseInt(pageSizeSelect.value);
 let loading = false;
+let produktyLoaded = false;
 
-async function fetchProducts() {
+async function fetchProducts(reset = false) {
   if (loading) return;
   loading = true;
+  loader.style.display = 'block';
+
+  if (reset) {
+    productGrid.innerHTML = '';
+    page = 1;
+  }
+
   try {
     const res = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=${page}&pageSize=${pageSize}`);
     const data = await res.json();
@@ -86,9 +88,10 @@ async function fetchProducts() {
     });
 
     page++;
-    loading = false;
   } catch (e) {
     console.error('Błąd wczytywania:', e);
+  } finally {
+    loader.style.display = 'none';
     loading = false;
   }
 }
@@ -104,20 +107,30 @@ popupClose.addEventListener('click', () => {
   popupOverlay.classList.remove('active');
 });
 
-// Ładowanie przy przewijaniu do dołu
+// Infinite scroll
 window.addEventListener('scroll', () => {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && produktyLoaded) {
     fetchProducts();
   }
 });
 
-// Zmiana liczby na stronie
+// PageSize change
 pageSizeSelect.addEventListener('change', () => {
   pageSize = parseInt(pageSizeSelect.value);
-  page = 1;
-  productGrid.innerHTML = '';
-  fetchProducts();
+  fetchProducts(true); // true = reset
 });
 
-// Start
-fetchProducts();
+// Lazy load (initial fetch when user scrolls to section)
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !produktyLoaded) {
+      produktyLoaded = true;
+      fetchProducts();
+      obs.unobserve(produktySection);
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+observer.observe(produktySection);
