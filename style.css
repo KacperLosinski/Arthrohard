@@ -99,7 +99,6 @@ header {
   display: block;
 }
 
-
 nav {
   display: flex;
   justify-content: center;
@@ -127,8 +126,6 @@ nav {
   text-decoration-thickness: 2px;
   text-underline-offset: 10px;
 }
-
-
 
 .productslink {
   font-weight: bold;
@@ -274,7 +271,7 @@ h2::after {
 
 .features-container {
   display: flex;
-  margin: 20px auto;
+  margin: 20px auto 0;
   max-width: 1650px;
 }
 
@@ -288,17 +285,18 @@ h2::after {
   flex-direction: column;
   align-items: center;
 }
-.features-container .feature:first-child::after {
+.feature::after {
   content: "";
   display: block;
-  width: 360px;
+  width: 0;
   height: 2px;
-  background: #111111;
+  background: #111;
   margin: 25px auto 0;
+  transition: width 0.3s ease;
 }
 
-.features-container .feature:not(:first-child)::after {
-  display: none;
+.feature:hover::after {
+  width: 360px; /* lub np. 140px, jak chcesz sztywno */
 }
 
 .feature h3 {
@@ -380,9 +378,10 @@ h2::after {
 /*dzialanie section*/
 .dzialanie-mobile {
   display: none;
-  padding: 40px 20px;
+  padding: 40px 0px;
   margin-bottom: 20px;
   text-align: center;
+  align-items: center;
   background: #fff;
 }
 
@@ -394,8 +393,10 @@ h2::after {
 
 .dzialanie-list {
   list-style: none;
+  justify-content: center;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 380px;
 }
 
 .dzialanie-list li {
@@ -727,7 +728,7 @@ h2::after {
   section {
     scroll-margin-top: 100px; /* dopasuj do wysokości headera */
   }
-  
+
   header {
     padding: 40px;
   }
@@ -747,7 +748,6 @@ h2::after {
   }
 
   .feature {
-    width: 45%;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -802,7 +802,7 @@ h2::after {
   section {
     scroll-margin-top: 90px; /* dopasuj do wysokości headera */
   }
-  
+
   header {
     padding: 35px;
   }
@@ -829,16 +829,16 @@ h2::after {
   }
 
   .feature h3 {
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 28px;
+    margin-bottom: 7px;
   }
 
   .feature p {
-    font-size: 16px;
-    width: 240px;
+    font-size: 18px;
+    width: 360px;
   }
   .feature img {
-    height: 180px;
+    height: 280px;
     width: auto;
   }
 
@@ -849,30 +849,29 @@ h2::after {
   }
 
   .feature-second .feature-images img {
-    height: 170px;
+    height: 280px;
     width: auto;
-    margin-top: 90px;
+    margin-top: 60px;
+  }
+  .feature:hover::after {
+    width: 320px; /* lub np. 140px, jak chcesz sztywno */
   }
 
-  .features-container .feature:first-child::after {
-    width: 90%;
-    max-width: 225px;
-  }
   .feature-second ul li div {
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    font-size: 16px;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
   .feature-second ul li {
-    font-size: 17px;
+    font-size: 19px;
   }
   .feature-second ul {
-    padding-top: 40px;
+    padding-top: 20px;
   }
 
   .feature:nth-child(3) {
-    margin-top: -75px;
+    margin-top: -15px;
   }
 
   .composition-container {
@@ -905,12 +904,21 @@ h2::after {
   }
 }
 
+@media (max-width: 853px) {
+  .feature {
+    margin-top: 40px;
+  }
+  .feature-second {
+    margin-top: -60px;
+  }
+}
+
 /* Styl dla wersji mobilnej */
 @media (max-width: 768px) {
   section {
     scroll-margin-top: 50px; /* dopasuj do wysokości headera */
   }
-  
+
   header {
     padding: 25px;
     box-shadow: 0px 0px 0px;
@@ -960,7 +968,7 @@ h2::after {
   .nav-links.active {
     display: flex;
   }
-  
+
   .nav-links li a:hover,
   .nav-links li a.active {
     text-decoration-thickness: 1px;
@@ -1012,12 +1020,48 @@ h2::after {
     width: 50%;
   }
 
-  .features-container {
-    flex-direction: column;
+  .feature h3 {
+    font-size: 20px;
+    margin-bottom: 7px;
   }
-  .feature-second {
-    margin-top: -75px;
+
+  .feature p {
+    font-size: 13px;
+    width: 100%;
+    max-width: 280px;
   }
+  .feature img {
+    width: 100%;
+    max-height: 290px;
+    max-width: 290px;
+    object-fit: cover;
+  }
+
+  .feature-second .feature-images {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .feature-second .feature-images img {
+    height: 290px;
+    width: 50%;
+    max-width: 135px;
+    margin-top: 60px;
+  }
+  .feature:hover::after {
+    width: 300px;
+  }
+
+  .feature-second ul li {
+    font-size: 13px;
+    justify-content: center;
+  }
+  .feature-second ul {
+    padding-top: 20px;
+    align-items: center;
+  }
+
   .dzialanie-mobile {
     display: block;
   }
