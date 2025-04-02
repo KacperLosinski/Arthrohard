@@ -297,7 +297,7 @@ h2::after {
   height: 2px;
   background: #111;
   margin: 25px auto 0;
-  transition: width 0.3s ease;
+  transition: width 0.2s ease-in-out;
 }
 
 .feature:hover::after {
@@ -609,9 +609,9 @@ h2::after {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* 👈 ustawia 4 kolumny */
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
@@ -907,6 +907,9 @@ h2::after {
     max-width: 100%; /* zmniejszamy psa */
     height: auto;
   }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 853px) {
@@ -1135,6 +1138,9 @@ h2::after {
   }
   .product-item {
     padding: 0px;
+  }
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
