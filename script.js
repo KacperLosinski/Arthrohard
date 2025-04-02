@@ -19,18 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.remove("active");
   });
 
-  // Active link setting
-  function setActiveLink() {
-    navLinksA.forEach(link => {
-      link.classList.remove("active");
-      if (window.location.href.includes(link.getAttribute("href"))) {
-        link.classList.add("active");
-      }
-    });
-  }
-
-  setActiveLink();
-
+  // Aktywne linki przy kliknięciu
   navLinksA.forEach(link => {
     link.addEventListener("click", function () {
       navLinksA.forEach(l => l.classList.remove("active"));
@@ -49,10 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
       overlay.classList.remove("active");
     });
   }
+
+  // Scrollspy – podkreśla link nawigacji podczas scrollowania
+  const sections = document.querySelectorAll("section[id]");
+
+  window.addEventListener("scroll", () => {
+    let currentSection = "";
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 160 && rect.bottom >= 160) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    navLinksA.forEach(link => {
+      link.classList.remove("active");
+
+      if (link.getAttribute("href") === `#${currentSection}`) {
+        link.classList.add("active");
+      }
+    });
+  });
 });
-
-
-
 
 
 // === PRODUKTY ===
