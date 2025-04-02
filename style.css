@@ -9,6 +9,10 @@
 body {
   background-color: #f1f1f1;
 }
+section {
+  scroll-margin-top: 120px; /* dopasuj do wysokości headera */
+}
+
 @font-face {
   font-family: "Futura PT";
   src: url("fonts/FuturaPT-Light.woff2") format("woff2"),
@@ -65,10 +69,6 @@ header {
   transition: transform 0.3s ease-in-out;
   z-index: 10;
 }
-.header-hidden {
-  transform: translateY(-100%);
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -114,15 +114,18 @@ nav {
   text-decoration: none;
   color: black;
   font-size: 16px;
-  transition: color 0.3s;
+  transition: color 0.4s;
   position: relative;
 }
 
+.nav-links li a:hover,
 .nav-links li a.active {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 10px;
 }
+
+
 
 .productslink {
   font-weight: bold;
@@ -525,7 +528,7 @@ h2::after {
   font-weight: 700;
   transition: 0.3s;
   margin-top: -100px;
-  margin-bottom: 600px;
+  margin-bottom: 300px;
 }
 
 .composition-center .btn:hover {
@@ -542,15 +545,9 @@ h2::after {
   align-items: center;
   background-color: #ffffff;
   background-size: 300px, 240px;
-
-  /* Dwa tła: lewe i prawe vectory */
   background-image: url("images/Vector (3).png"), url("images/Vector (4).png");
   background-repeat: no-repeat;
-
-  /* Wypozycjonowane względem środka sekcji */
   background-position: calc(50% - 200px) 40%, calc(50% + 290px) 30%;
-
-  /* Paralaksa */
   background-attachment: fixed;
 }
 
@@ -723,6 +720,10 @@ h2::after {
 }
 
 @media (max-width: 1200px) {
+  section {
+    scroll-margin-top: 100px; /* dopasuj do wysokości headera */
+  }
+  
   header {
     padding: 40px;
   }
@@ -794,6 +795,10 @@ h2::after {
 }
 
 @media (max-width: 992px) {
+  section {
+    scroll-margin-top: 90px; /* dopasuj do wysokości headera */
+  }
+  
   header {
     padding: 35px;
   }
@@ -898,6 +903,10 @@ h2::after {
 
 /* Styl dla wersji mobilnej */
 @media (max-width: 768px) {
+  section {
+    scroll-margin-top: 50px; /* dopasuj do wysokości headera */
+  }
+  
   header {
     padding: 25px;
     box-shadow: 0px 0px 0px;
@@ -947,6 +956,8 @@ h2::after {
   .nav-links.active {
     display: flex;
   }
+  
+  .nav-links li a:hover,
   .nav-links li a.active {
     text-decoration-thickness: 1px;
     text-underline-offset: 6px;

@@ -37,17 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Sticky header
-document.addEventListener("DOMContentLoaded", function () {
-  let lastScrollTop = 0;
-  const header = document.querySelector("header");
-
-  window.addEventListener("scroll", function () {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    header.classList.toggle("header-hidden", scrollTop > lastScrollTop);
-    lastScrollTop = scrollTop;
-  });
-});
 
 // === PRODUKTY ===
 const productGrid = document.getElementById('productGrid');
