@@ -87,15 +87,18 @@ header {
 }
 
 .logo {
-  font-size: 40px;
+  display: block;
   position: absolute;
   left: 13vw;
-  color: black;
+  height: 29px; /* dostosuj rozmiar logo */
 }
 
-.logo span {
-  color: #ad4844;
+.logo img {
+  height: 100%;
+  width: auto;
+  display: block;
 }
+
 
 nav {
   display: flex;
@@ -241,6 +244,7 @@ nav {
 /* FEATURES SECTION */
 .features {
   text-align: center;
+  padding-top: 50px;
 }
 
 h2 {
@@ -729,7 +733,7 @@ h2::after {
   }
   .logo {
     left: 5vw;
-    font-size: 32px;
+    height: 23px;
   }
 
   .btn {
@@ -806,7 +810,7 @@ h2::after {
     font-size: 32px;
   }
   .logo {
-    font-size: 28px;
+    height: 20px;
     left: 25px;
   }
   .nav-links {
@@ -933,7 +937,7 @@ h2::after {
     font-size: 20px;
   }
   .logo {
-    font-size: 17px;
+    height: 15px;
     left: 3.125vw;
   }
   .nav-links {
@@ -1006,9 +1010,6 @@ h2::after {
 
   .shape {
     width: 50%;
-  }
-  .features {
-    margin-top: 250px;
   }
 
   .features-container {

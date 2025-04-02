@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.classList.add("overlay");
   document.body.appendChild(overlay);
 
+  const logoLink = document.querySelector(".logo");
+
   // Hamburger menu
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
@@ -33,9 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", function () {
       navLinksA.forEach(l => l.classList.remove("active"));
       this.classList.add("active");
+      // zamknij menu mobilne po kliknięciu
+      navLinks.classList.remove("active");
+      overlay.classList.remove("active");
     });
   });
+
+  // Kliknięcie w logo resetuje aktywne linki i zamyka menu
+  if (logoLink) {
+    logoLink.addEventListener("click", () => {
+      navLinksA.forEach(link => link.classList.remove("active"));
+      navLinks.classList.remove("active");
+      overlay.classList.remove("active");
+    });
+  }
 });
+
+
+
 
 
 // === PRODUKTY ===
