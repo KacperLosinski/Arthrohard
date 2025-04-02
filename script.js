@@ -113,6 +113,13 @@ popupClose.addEventListener('click', () => {
   popupOverlay.classList.remove('active');
 });
 
+// Zamknięcie popupu po kliknięciu w tło (poza treścią popupu)
+popupOverlay.addEventListener('click', (e) => {
+  if (e.target === popupOverlay) {
+    popupOverlay.classList.remove('active');
+  }
+});
+
 // Infinite scroll
 window.addEventListener('scroll', () => {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && produktyLoaded) {
