@@ -141,7 +141,7 @@ pageSizeSelect.addEventListener('change', () => {
   fetchProducts(true); // true = reset
 });
 
-// Lazy load (initial fetch when user scrolls to section)
+// Lazy load 
 const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting && !produktyLoaded) {

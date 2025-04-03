@@ -1,4 +1,4 @@
-/* Resetowanie domyślnych styli */
+
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   background-color: #f1f1f1;
 }
 section {
-  scroll-margin-top: 120px; /* dopasuj do wysokości headera */
+  scroll-margin-top: 120px; 
 }
 
 @font-face {
@@ -93,7 +93,7 @@ header {
   display: block;
   position: absolute;
   left: 13vw;
-  height: 29px; /* dostosuj rozmiar logo */
+  height: 29px; 
 }
 
 .logo img {
@@ -186,8 +186,8 @@ nav {
   bottom: 0;
   width: 20vw;
   max-width: 389px;
-  min-width: 130px;
-  transform: translateY(100%);
+  min-width: 90px;
+  transform: translateY(97%);
 }
 
 .shape-right {
@@ -204,7 +204,7 @@ nav {
   bottom: 0;
   width: 23vw;
   max-width: 480px;
-  min-width: 160px;
+  min-width: 100px;
   transform: translateY(90%);
 }
 
@@ -268,6 +268,65 @@ nav {
   min-height: 80vh;
 }
 
+.feature-shape {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: auto;
+}
+
+/* --- Feature 1 --- */
+.shape-a {
+  top: 380px;
+  left: -40px;
+  width: 5vw;
+  max-width: 96px;
+  min-width: 86px;
+}
+
+.shape-b {
+  bottom: 110px;
+  right: -35px;
+  width: 4.5vw;
+  max-width: 87px;
+  min-width: 78px;
+}
+
+/* --- Feature 2 --- */
+.shape-c {
+  top: 385px;
+  left: -35px;
+  width: 5.4vw;
+  max-width: 105px;
+  min-width: 94px;
+}
+
+.shape-d {
+  bottom: 50px;
+  right: 10px;
+  width: 5vw;
+  max-width: 100px;
+  min-width: 90px;
+}
+
+/* --- Feature 3 --- */
+.shape-e {
+  top: 350px;
+  left: -42px;
+  width: 4.7vw;
+  max-width: 90px;
+  min-width: 81px;
+  z-index: 1;
+}
+
+.shape-f {
+  bottom: 60px;
+  right: 5px;
+  width: 4.56vw;
+  max-width: 88px;
+  min-width: 79px;
+}
+
 h2 {
   font-size: 48px;
   font-weight: 400;
@@ -320,7 +379,7 @@ h2::after {
 }
 
 .feature:hover::after {
-  width: 360px; /* lub np. 140px, jak chcesz sztywno */
+  width: 360px; 
 }
 
 .feature h3 {
@@ -354,6 +413,7 @@ h2::after {
   display: flex;
   justify-content: center;
   gap: 15px;
+  z-index: 2;
 }
 
 .feature-second .feature-images img {
@@ -394,7 +454,7 @@ h2::after {
   font-weight: bold;
 }
 
-.feature img {
+.photo-feature {
   width: 360px;
   height: auto;
   margin-top: 15px;
@@ -628,7 +688,7 @@ h2::after {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 👈 ustawia 4 kolumny */
+  grid-template-columns: repeat(4, 1fr); 
   gap: 30px;
   max-width: 1800px;
   margin: 0 auto;
@@ -750,7 +810,7 @@ h2::after {
 
 @media (max-width: 1200px) {
   section {
-    scroll-margin-top: 100px; /* dopasuj do wysokości headera */
+    scroll-margin-top: 100px; 
   }
 
   header {
@@ -774,6 +834,16 @@ h2::after {
   .feature {
     text-align: center;
     margin-bottom: 20px;
+  }
+
+  .shape-e {
+    left: 50%;
+    transform: translateX(-260px);
+  }
+
+  .shape-f {
+    right: 50%;
+    transform: translateX(200px);
   }
 
   .feature:nth-child(1) {
@@ -824,7 +894,7 @@ h2::after {
 
 @media (max-width: 992px) {
   section {
-    scroll-margin-top: 90px; /* dopasuj do wysokości headera */
+    scroll-margin-top: 90px; 
   }
 
   header {
@@ -861,7 +931,7 @@ h2::after {
     font-size: 18px;
     width: 360px;
   }
-  .feature img {
+  .photo-feature {
     height: 280px;
     width: auto;
   }
@@ -878,7 +948,7 @@ h2::after {
     margin-top: 60px;
   }
   .feature:hover::after {
-    width: 320px; /* lub np. 140px, jak chcesz sztywno */
+    width: 320px; 
   }
 
   .feature-second ul li div {
@@ -923,7 +993,7 @@ h2::after {
   }
 
   .composition-dog img {
-    max-width: 100%; /* zmniejszamy psa */
+    max-width: 100%; 
     height: auto;
   }
   .product-grid {
@@ -940,10 +1010,9 @@ h2::after {
   }
 }
 
-/* Styl dla wersji mobilnej */
 @media (max-width: 768px) {
   section {
-    scroll-margin-top: 50px; /* dopasuj do wysokości headera */
+    scroll-margin-top: 50px; 
   }
 
   header {
@@ -1043,6 +1112,13 @@ h2::after {
     display: none;
   }
 
+  .features {
+    width: 100vw;
+  }
+
+  .feature {
+    width: 100%;
+  }
   .feature h3 {
     font-size: 20px;
     margin-bottom: 7px;
@@ -1053,7 +1129,40 @@ h2::after {
     width: 100%;
     max-width: 280px;
   }
-  .feature img {
+
+  .shape-a {
+    display: none;
+  }
+
+  .shape-b {
+    display: none;
+  }
+
+  .shape-c {
+    rotate: 210deg;
+    top: -60px;
+    left: -45px;
+  }
+
+  .shape-d {
+    bottom: 550px;
+    right: 0px;
+  }
+
+  .shape-e {
+    rotate: 55deg;
+    top: -70px;
+    left: -40px;
+    transform: none;
+  }
+
+  .shape-f {
+    bottom: 560px;
+    right: 0px;
+    transform: none;
+  }
+
+  .photo-feature {
     width: 100%;
     max-height: 290px;
     max-width: 290px;
