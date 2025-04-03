@@ -413,7 +413,6 @@ h2::after {
   display: flex;
   justify-content: center;
   gap: 15px;
-  z-index: 2;
 }
 
 .feature-second .feature-images img {
@@ -789,6 +788,10 @@ h2::after {
   .hero p {
     font-size: 1.5vw;
     margin-right: 0;
+  }
+
+  .shape-e {
+    z-index: -1;
   }
 
   .composition-container {
